@@ -42,7 +42,8 @@ module Bluepill
         if @child_process_block
           child_proxy = self.class.new
           # Children inherit some properties of the parent
-          [:start_grace_time, :stop_grace_time, :restart_grace_time].each do |attribute|
+          [:start_grace_time, :stop_grace_time, :restart_grace_time,
+            :start_wait_time, :stop_wait_time, :restart_wait_time].each do |attribute|
             child_proxy.send("#{attribute}=", @attributes[attribute]) if @attributes.key?(attribute)
           end
           @child_process_block.call(child_proxy)

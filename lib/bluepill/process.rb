@@ -21,6 +21,10 @@ module Bluepill
       :stop_grace_time, 
       :restart_grace_time,
       
+      :start_wait_time, 
+      :stop_wait_time, 
+      :restart_wait_time,
+      
       :uid,
       :gid,
       
@@ -97,6 +101,7 @@ module Bluepill
       # These defaults are overriden below if it's configured to be something else.
       @monitor_children =  false
       @start_grace_time = @stop_grace_time = @restart_grace_time = 3
+      @start_wait_time = @stop_wait_time = @restart_wait_time = 3
       @environment = {}
       
       CONFIGURABLE_ATTRIBUTES.each do |attribute_name|
@@ -242,7 +247,7 @@ module Bluepill
         
       else
         # This is a self-daemonizing process
-        with_timeout(start_grace_time) do
+        with_timeout(start_wait_time) do
           result = System.execute_blocking(start_command, self.system_command_options)
           
           unless result[:exit_code].zero?
@@ -260,7 +265,7 @@ module Bluepill
         cmd = self.prepare_command(stop_command)
         logger.warning "Executing stop command: #{cmd}"
         
-        with_timeout(stop_grace_time) do
+        with_timeout(stop_wait_time) do
           result = System.execute_blocking(cmd, self.system_command_options)
           
           unless result[:exit_code].zero?
@@ -284,7 +289,7 @@ module Bluepill
         
         logger.warning "Executing restart command: #{cmd}"
         
-        with_timeout(restart_grace_time) do
+        with_timeout(restart_wait_time) do
           result = System.execute_blocking(cmd, self.system_command_options)
 
           unless result[:exit_code].zero?
