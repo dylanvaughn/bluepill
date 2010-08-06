@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{dylanvaughn-bluepill}
-  s.version = "0.0.39"
+  s.version = "0.0.40"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Arya Asemanfar", "Gary Tsang", "Rohith Ravi"]
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
      "bin/bluepill",
      "bin/bpsv",
      "bluepill.gemspec",
+     "dylanvaughn-bluepill.gemspec",
      "lib/bluepill.rb",
      "lib/bluepill/application.rb",
      "lib/bluepill/application/client.rb",
@@ -54,7 +55,7 @@ Gem::Specification.new do |s|
      "lib/example.rb",
      "lib/runit_example.rb"
   ]
-  s.homepage = %q{http://github.com/arya/bluepill}
+  s.homepage = %q{http://github.com/dylanvaughn/bluepill}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
